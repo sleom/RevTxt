@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<PropertyGroup>
+  <RevTxt Condition="'$(RevTxt)' == ''">true</RevTxt>
+  <RevFileName Condition="'$(RevFileName)' == ''">rev.txt</RevFileName>
+</PropertyGroup>
+  <Target Name="RevTxt" 
+          AfterTargets="GetVersion" 
+          BeforeTargets="CopyAllFilesToSingleFolderForPackageDependsOn"
+          Condition="$(RevTxt) == 'true' And $(GetVersion) == 'true'">
+    <ItemGroup>
+      <RevFileLines Include="Project: $(AssemblyName)" />
+      <RevFileLines Include="Version: $(GitVersion_AssemblySemVer)" />
+      <RevFileLines Include="Revision: $(GitVersion_FullBuildMetaData)" />
+    </ItemGroup>
+    <WriteLinesToFile
+      File="$(RevFileName)"
+      Lines="@(RevFileLines)"
+      Overwrite="true"
+      Encoding="UTF-8" />
+    <ItemGroup>
+      <FilesForPackagingFromProject Include="$(RevFileName)">
+        <DestinationRelativePath>.\$(RevFileName)</DestinationRelativePath>
+      </FilesForPackagingFromProject>
+    </ItemGroup>
+  </Target>
+</Project>

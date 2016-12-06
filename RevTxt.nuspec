@@ -1,0 +1,17 @@
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata minClientVersion="2.8">
+    <id>RevTxt</id>
+    <version>1.0.0</version>
+    <title>RevTxt</title>
+    <authors>leonidm</authors>
+    <owners>teg</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Stamps an assembly and adds file with version info with git information based on SemVer.</description>
+    <language>en-AU</language>
+    <tags>Git, Versioning, GitVersion, GitFlowVersion, GitFlow, GitHubFlow, SemVer</tags>
+    <copyright>Copyright © 2016 All Rights Reserved.</copyright>
+    <dependencies>
+      <dependency id="GitVersionTask" version="3.6.5" />
+    </dependencies>
+  </metadata>
+</package>
